@@ -25,7 +25,7 @@ def generate(root):
     give = root.find(".//data_wyd").text
     photo_base64 = root.find(".//zdjecieBase64").text
     school = "Zespół Szkół \nTechnicznych\nim. J.J. Śniadeckich \nw Grudziądzu \nul. Alfonsa Hoffmanna 1-7 \n 86-300 Grudziądz"
-    principal = "Kazimierz"
+    principal = "Kazimierz Olszewski"
     
     birth = birth_from_pesel(pesel)
     zdjecie_decoded = base64.b64decode(photo_base64)
