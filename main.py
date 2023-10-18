@@ -24,34 +24,33 @@ def generate(root):
     exp = root.find(".//data_waz").text
     give = root.find(".//data_wyd").text
     photo_base64 = root.find(".//zdjecieBase64").text
-    school = "Zespół Szkół \nTechnicznych\nim. J.J. Śniadeckich \nw Grudziądzu \nul. Alfonsa Hoffmanna 1-7 \n 86-300 Grudziądz"
+    school = "Zespół Szkół Technicznych \nim. J.J. Śniadeckich w Grudziądzu \nul. Alfonsa Hoffmanna 1-7 \n86-300 Grudziądz"
     principal = "Kazimierz Olszewski"
+    full_name = name +" " + surname
     
     birth = birth_from_pesel(pesel)
     zdjecie_decoded = base64.b64decode(photo_base64)
-    id_template = Image.open("cos.png")
+    id_template = Image.open("a.png")
     draw = ImageDraw.Draw(id_template)
     
-    font_path = "FrankRuhlLibre-Medium.ttf"
-    font_size = 15
+    font_path = "FrankRuhlLibre-Bold.ttf"
+    font_size = 20
     
-    school_font= "FrankRuhlLibre-Medium.ttf"
-    school_font_size = 12
+    school_font= "FrankRuhlLibre-Bold.ttf"
+    school_font_size = 16
     
     font = ImageFont.truetype(font_path, font_size)
     s_font = ImageFont.truetype(school_font, school_font_size)
     
-    name_position = (170, 109)
-    surname_position = (170, 145)
-    pesel_position = (170, 215)
-    nr_leg_position = (62,301)
-    give_date_position = (334,285)
-    birth_position = (170, 180)  
-    school_pos = (366, 127)  
-    principal_pos = (175,285) 
+    fullname_position = (267, 163)
+    pesel_position = (517, 214)
+    nr_leg_position = (101,435)
+    give_date_position = (267,433)
+    birth_position = (267, 214)  
+    school_pos = (267, 270)  
+    principal_pos = (267,377) 
 
-    draw.text(name_position, name, fill="black", font=font)
-    draw.text(surname_position, surname, fill="black", font=font)
+    draw.text(fullname_position, full_name, fill="black", font=font)
     draw.text(pesel_position, pesel, fill="black", font=font)
     draw.text(nr_leg_position, nr_leg, fill="black", font=font)
     draw.text(give_date_position, give, fill="black", font=font)
@@ -61,8 +60,8 @@ def generate(root):
 
     image = Image.open(io.BytesIO(zdjecie_decoded))
 
-    image = image.resize((106, 168))
-    id_template.paste(image, (40, 120))
+    image = image.resize((170, 250))
+    id_template.paste(image, (64, 167))
 
     id_template.save('id/' + pesel + '.png')
     print ("wygenerowano dla " + surname)
